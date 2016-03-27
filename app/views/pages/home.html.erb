@@ -1,0 +1,27 @@
+<h1>Engegister, catégoriser et rechercher des gists</h1>
+<div style="font-style: italic;">Par Setni</div>
+<br>
+<%= form_tag "/pages", method: "post" do %>
+  <input type="search" placeholder="nom du repo" name="repo" />
+  <input type="search" placeholder="langage du repo" name="lang"/>
+  <input type="submit"  value="rechercher un repo" />
+<% end %>
+
+<br>
+
+<%= form_tag "/index", method: "GET" do %>
+    rechercher parmi les gists enregistrés
+    <select name="category">
+        <option value="1">favori</option>
+        <option value="2">A lire</option>
+        <option value="3">Inspi</option>
+        <option value="4">Tout</option>
+    </select>
+    <input type="button" onClick="aff(this);" value="afficher">
+
+<%end%>
+
+<div id="result"></div>
+
+
+

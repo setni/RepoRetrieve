@@ -1,0 +1,34 @@
+
+
+
+<p style="font-weight:bold;">Resultats pour <%= @name %> sur <%=@langage%></p>
+
+<p><a href="/">Lancer une autre recherche</a></p>
+
+<div>RESULTAT :</div>
+
+<% @my_hash['items'].each do |name| %>
+
+<div>
+<p> <a href="<%=name["svn_url"]%>" target="_blank"><%= name["full_name"] %></a><span onClick="form(<%= name["id"] %>);">&nbsp;&nbsp;Enregistré ce gists</span></p>
+    <div class="resultat" style="display:none;" id="<%= name["id"] %>">
+        <%= form_tag "/result", method: "post", :remote => true do %>
+        <br>
+    <input onclick="ferm(<%= name["id"] %>);" type="button" value="X">
+    Choisissez un nom
+    <input type="text" value="<%= name["full_name"] %>" name="name">
+    Selectionner un categorie
+    <select name="category">
+        <option value="1">favori</option>
+        <option value="2">A lire</option>
+        <option value="3">Inspi</option>
+    </select>
+    <input type="hidden" value="<%= name["svn_url"] %>" name="link">
+        <input type="hidden" value="<%= name["id"] %>" name="id">
+    <input type="submit" value="enregistrer">
+    
+    
+    <%end%>
+    </div>
+</div>
+<%end%>
